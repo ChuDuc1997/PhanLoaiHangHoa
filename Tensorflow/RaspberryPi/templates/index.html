@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Phân Loại Hàng Hóa</title>
+  </head>
+  <style>
+    table {
+        table-layout: auto;
+        border-collapse: collapse;
+    }
+    table td, tr, th {
+        border: 1px solid black;
+    }
+
+    .buttonData {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #ff8000;
+    }
+
+   .buttonData:hover {
+    background-color: #ff8000;
+    color: white;
+    }  
+  </style>
+  <body>
+    <table width = "760" align="center">
+      <tr>
+        <h1 align="center" style="height: 15;">Phân Loại Hàng Hóa</h1>
+      </tr>
+      <tr>
+        <th valign="center">
+          <input style="text-align:center;width:180;height:120;background-color:#DC143C;" type="button" id="startButton" value="OFF" onclick="onStartStop()">
+        </th>
+        <th>
+          <iframe style="text-align:center;width:660;height:500;"; id ="video";></iframe>
+        </th>
+      </tr>
+    </table>
+    <script>
+    function onStartStop()
+    {
+      var button = document.getElementById("startButton");
+      var mode = "/OFF";
+
+      if (button.value=="OFF") 
+      {
+        frm = 0;
+        button.value = "RUNNING...";
+        button.style = "text-align:center;width:180;height:120;background-color:#7FFF00;"
+        mode = "/RUN";
+        var fr = document.getElementById("video");
+        fr.src = "http://0.0.0.0:5000/VIDEO";
+
+        var url = "/VIDEO";
+        var req = new XMLHttpRequest();
+        req.open("GET",url, true);
+        req.overrideMimeType('text/plain; charset=x-user-defined');
+        req.send(null);
+        req.onreadystatechange = function() {
+            if (req.readyState == XMLHttpRequest.DONE && req.status == 200) {
+          
+            }
+      }
+      }
+      else
+      {
+        button.value = "OFF";
+        button.style = "text-align:center;width:180;height:120;background-color:#ff0000;"
+        mode = "/OFF";
+      }
+     var url = mode;
+     var req = new XMLHttpRequest();
+     req.open("GET",url, true);
+     req.overrideMimeType('text/plain; charset=x-user-defined');
+     req.send(null);
+     req.onreadystatechange = function() {
+        if (req.readyState == XMLHttpRequest.DONE && req.status == 200) {
+          
+        }
+      }
+    }
+    </script>
+  </body>
+</html>
