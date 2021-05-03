@@ -17,14 +17,14 @@ def shutdown_server():
     func()
     
 def log_values(product):
-    db = sqlite3.connect("/home/pi/Projects/Tensorflow/RaspberryPi/mydb.db")
+    db = sqlite3.connect("/home/pi/PhanLoaiHangHoa/Tensorflow/RaspberryPi/mydb.db")
     cur = db.cursor()
     cur.execute("""INSERT INTO products(product, datetime) VALUES((?), DATETIME(CURRENT_TIMESTAMP, 'localtime'))""", (product,))
     db.commit()
     db.close()
     
 def get_data():
-    db = sqlite3.connect("/home/pi/Projects/Tensorflow/RaspberryPi/mydb.db")
+    db = sqlite3.connect("/home/pi/PhanLoaiHangHoa/Tensorflow/RaspberryPi/mydb.db")
     cur = db.cursor()
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
